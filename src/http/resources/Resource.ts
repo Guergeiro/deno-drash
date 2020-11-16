@@ -1,10 +1,9 @@
-import { Request } from "../../deps.ts";
-import { Response } from "../../deps.ts";
+import { Request } from "../../../deps.ts";
+import { Response } from "../../../deps.ts";
 import { IResource } from "./IResource.ts";
 
-class Resource implements IResource {
-  public uri: string[] = [];
 
+class Resource implements IResource {
   public async CONNECT(request: Request) {
     const response: Response = {
       status: 404,

@@ -1,5 +1,5 @@
-import { Request } from "../../deps.ts";
-import { Response } from "../../deps.ts";
+import { Request } from "../../../deps.ts";
+import { Response } from "../../../deps.ts";
 
 interface IResource {
   CONNECT(request: Request): Promise<Response>;

@@ -1,24 +1,28 @@
-import { Request } from "../../../deps.ts";
-import { IResource } from "../../resources/IResource.ts";
-import { Handler } from "../Handler.ts";
+import { Request, Response } from "../../../deps.ts";
+import { IResource } from "../../http/resources/IResource.ts";
+import { Handler } from "../../handlers/Handler.ts";
 
 class ResourceHandler extends Handler {
-  private resources: { [path: string]: IResource };
+  private resources: Map<string, IResource>;
 
-  public constructor(resources: { [path: string]: IResource }) {
+  public constructor(resources: Map<string, IResource>) {
     super();
     this.resources = resources;
   }
 
-  public handle(request: Request) {
-    const resource = this.resources[request["url"]];
+  public async handle(request: Request) {
+    const resource = this.resources.get(request["url"]);
 
     if (resource == null) {
-      return super.handle(request);
+      const out = new TextEncoder().encode("Not found.\n");
+      const response: Response = {
+        status: 404,
+        body: out,
+      };
+      return response;
     }
 
     const methodToExecute = request["method"].toUpperCase();
-
     // @ts-ignore For some reason, we cannot envoke method with string name...
     // ```typescript
     // resource["GET"](request); // Works

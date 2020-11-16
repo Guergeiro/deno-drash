@@ -1,4 +1,4 @@
-import { Request } from "../../deps.ts";
+import { Request } from "../../../deps.ts";
 import { IResource } from "./IResource.ts";
 
 class ResourceMiddleware implements IResource {
