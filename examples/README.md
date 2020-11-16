@@ -169,7 +169,7 @@ Picking up from Snippet #1
 /**
  * Snippet #5
  */
-// Creating a Handler
+// Creating a HandlerMiddleware
 class Home extends Resource {
   ...
 }
